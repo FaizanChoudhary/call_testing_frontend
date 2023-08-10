@@ -28,6 +28,8 @@ function AudioStreaming() {
       setStream(audioStream);
       console.log("Tracks:", audioStream.getTracks());
 
+      socket.emit("media", audioStream);
+
       const peerConnection = new RTCPeerConnection();
       audioStream.getTracks().forEach((track) => {
         peerConnection.addTrack(track, audioStream);
@@ -40,7 +42,6 @@ function AudioStreaming() {
       };
 
       // Set up peer connection and other handlers as needed
-      // ...
 
       setIsStreaming(true);
     } catch (error) {
